@@ -21,6 +21,8 @@ HEALTH-SEC/
 ├── db/00_usuario_app.sql.example   cria o usuário da aplicação (copie e ponha sua senha)
 ├── db/criacao_tabelas.sql          script 1: banco, 12 tabelas, 7 triggers
 ├── db/insercao_tabelas.sql         script 2: dados de teste (reexecutável)
+├── db/consultas.sql                as 10 consultas do minimundo (mesmo SQL do ConsultaDao)
+├── docs/DESENVOLVIMENTO.md         fluxo de trabalho em equipe (branches, PR, mudanças no banco)
 ├── lib/                            driver JDBC (local, não versionado; crie a pasta, veja o passo 6)
 ├── scripts/                        build.bat (compila) e run.bat (sobe o servidor)
 ├── src/br/cesar/vacinas/
@@ -31,10 +33,16 @@ HEALTH-SEC/
 │   ├── http/                       Router, Request, Json, StaticFiles, HttpError
 │   ├── api/Routes.java             todos os endpoints: MÉTODO + caminho -> método do DAO
 │   └── dao/                        *** todo o SQL da aplicação *** (um DAO por funcionalidade)
+│       └── ConsultaDao.java        as 10 consultas do minimundo (aba Consultas)
 └── web/                            front servido pelo próprio Java em http://localhost:8080
     ├── index.html                  página única, uma <section> por aba
     ├── css/style.css
-    └── js/                         api.js (fetch + erros), app.js (abas), charts.js, um .js por aba
+    └── js/
+        ├── api.js                  fetch, tratamento de erros e utilitários de tela (ui)
+        ├── app.js                  troca de abas
+        ├── charts.js               gráficos SVG
+        ├── consultas.js            aba Consultas: seletor, SQL e tabela de resultado
+        └── dashboard.js, pacientes.js, estoque.js   uma aba cada
 ```
 
 ---
@@ -253,6 +261,8 @@ Regras rápidas:
 | Método | Caminho | Resposta |
 |---|---|---|
 | GET | `/api/health` | versão do MySQL e nome do banco (teste de conexão) |
+| GET | `/api/consultas` | as 10 consultas: número, título, pergunta, recursos, SQL e parâmetro |
+| GET | `/api/consultas/{n}` | `{"numero": n, "linhas": [...]}`; a 3 exige `?cns=` (15 dígitos) e a 6 exige `?id_lote=` |
 
 Cada rota nova entra nesta tabela no mesmo PR.
 

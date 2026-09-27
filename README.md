@@ -253,6 +253,13 @@ Regras rápidas:
 | Método | Caminho | Resposta |
 |---|---|---|
 | GET | `/api/health` | versão do MySQL e nome do banco (teste de conexão) |
+| GET | `/api/dashboard/ubs` | `[{cnes, nome}]` para o filtro de UBS do dashboard |
+| GET | `/api/dashboard/estatistica/faixa-etaria-sexo?cnes=` | doses aplicadas por faixa etária (idade na aplicação) e sexo: `[{ordem, faixa, sexo, doses}]` |
+| GET | `/api/dashboard/estatistica/doses-por-mes?cnes=` | doses aplicadas por mês nos últimos 24 meses: `{primeiro, ultimo, meses: [{mes, doses}]}` |
+| GET | `/api/dashboard/estatistica/situacao-doses?cnes=` | doses por situação (APLICADA, PENDENTE, ATRASADA, CANCELADA): `[{situacao, doses, percentual}]` |
+| GET | `/api/dashboard/estatistica/idade-pacientes?cnes=` | histograma da idade (classes de 10 anos) e medidas resumo: `{classes: [{inicio, pacientes}], resumo: {n, media, desvio_padrao, minimo, maximo, mediana}}` |
+
+Nas rotas de estatística, `cnes` é opcional (vazio = todas as UBS) e filtra pela UBS de referência do paciente.
 
 Cada rota nova entra nesta tabela no mesmo PR.
 

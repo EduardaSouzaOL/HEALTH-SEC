@@ -130,3 +130,38 @@ pre { background: #1c2430; color: #e8edf3; padding: 12px; border-radius: 8px; ov
 .consulta-mensagem.sucesso {
     background: #d1e7dd;
 }
+/* ==== DASHBOARD · ESTATÍSTICA (Cauã) ==== */
+:root {
+  --serie-1: #2a78d6; --serie-2: #eb6834;                 /* séries (identidade) */
+  --bom: #0ca30c; --critico: #d03b3b; --neutro: #a9a8a2;  /* situação da dose */
+  --tinta-2: #52514e; --tinta-3: #898781; --grade: #e1e0d9;
+}
+.filtro-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.filtro-topo h2 { margin: 0; }
+.filtro-topo label { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.secao > h2 { margin-bottom: 4px; }
+.secao > p { margin-top: 0; }
+figure .pergunta { margin: 0 0 8px; color: var(--tinta-2); font-size: 14px; }
+figure .variaveis { margin: 8px 0 0; color: var(--tinta-2); font-size: 13px; }
+figure details { margin-top: 8px; font-size: 13px; }
+figure summary { cursor: pointer; color: var(--azul); }
+figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+figure svg text { font-size: 11px; fill: var(--tinta-2); }
+figure svg .eixo { fill: var(--tinta-3); }
+figure svg .valor { fill: #1c2430; font-weight: 600; }
+figure svg .grade { stroke: var(--grade); stroke-width: 1; }
+figure svg .base { stroke: var(--tinta-3); stroke-width: 1; }
+figure svg .marca { stroke: #fff; stroke-width: 0; }
+figure svg .marca:hover { opacity: .8; }
+figure svg .traco { fill: none; stroke: var(--serie-1); stroke-width: 2; stroke-linejoin: round; }
+figure svg .ponto { fill: var(--serie-1); stroke: #fff; stroke-width: 2; }
+figure svg .alvo { fill: transparent; }
+figure svg .alvo:hover { fill: rgba(31, 95, 191, .06); }
+.referencia { stroke: #1c2430; stroke-width: 2; }
+.referencia.media { stroke-dasharray: 6 3; }
+.referencia.mediana { stroke-dasharray: 2 3; }
+.legenda { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; font-size: 13px; color: var(--tinta-2); }
+.legenda span { display: flex; align-items: center; gap: 6px; }
+.legenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+#tooltip-grafico { position: fixed; z-index: 10; background: #1c2430; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 13px; pointer-events: none; white-space: nowrap; }
+@media (max-width: 520px) { .graficos { grid-template-columns: 1fr; } main { padding: 16px; } }
